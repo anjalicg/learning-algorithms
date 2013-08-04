@@ -1,7 +1,6 @@
 require 'test/unit'
 require "./node.rb"
 class Stack
-  #@@size=0
   attr_accessor :top
   def empty?()
     if @top==nil
@@ -11,11 +10,29 @@ class Stack
     end
   end
   def peek()
-    #return the top node
-    return @top    
+    return top()    
   end
   def search(item)
-    #return position of a object from top , if present
+    
+    nextE=@top
+    i=0
+    pos=-1
+    while(nextE!=nil)
+      if nextE.data.to_str.match(item) then
+        puts "Item#{item} found at #{i} position from top:-> "+nextE.data.to_str
+        pos=i
+        break
+      end
+        if(nextE.next!=nil)
+          nextE=nextE.next()
+        else
+          nextE=nil
+        end
+        
+        i+=1
+    end
+      return pos
+    
   end
   def size()
     return @@size
@@ -64,11 +81,11 @@ class Stack
   end
   def traverse()
     nextE=@top
-    while(nextE.next!=nil)
+    while(nextE!=nil and nextE.next!=nil)
       puts nextE.data.to_str
       nextE=nextE.next()
     end
-    if nextE.next==nil
+    if (nextE!=nil and nextE.next==nil)
       puts nextE.data.to_str
     end    
   end
@@ -100,6 +117,7 @@ end
       assert_respond_to(s1,"empty?")
       assert_respond_to(s1,"traverse")
       assert_respond_to(s1,"size")      
+      assert_respond_to(s1,"peek")      
     end     
     def test_stack_operation()
       #will implement a person json and xml file later
@@ -107,21 +125,39 @@ end
       age=20
       i=0
       nameStack=Stack.new(nil)
-      puts "Is stack empty now?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+      #puts "Is stack empty now?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+      assert(nameStack.empty?(),"nameStack is empty now")
+      assert_equal(0,nameStack.size(),"nameStack Size is 0")
       names.each{|name|
         p = Person.new(name,age+i)
         n = Node.new(p,nil)
         i+=1
         nameStack.push(n)
-        puts "Pushed #{i}th node. Empty?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+        #puts "Pushed #{i}th node. Empty?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+        assert(!nameStack.empty?(),"nameStack is NOT empty now")
+        assert_equal(i,nameStack.size(),"nameStack Size is #{i}")
         }
-      puts "Traverse Stack"
+      puts "Traverse Stack of size:"+nameStack.size().to_s
       nameStack.traverse()
+      puts "Searching................."
+      #puts nameStack.search("apple").to_s
+      assert_not_equal(-1,nameStack.search("apple"),"'apple' was found")
+      assert_not_equal(-1,nameStack.search("elephant"),"'elephant' was found")
+      #puts nameStack.search("elephant").to_s
+      assert_equal(-1,nameStack.search("job"),"'Job' was not found")
+      #puts nameStack.search("ink").to_s
+      assert_not_equal(-1,nameStack.search("ink"),"'ink' was found")
+      peek=nameStack.peek()
       while(node=nameStack.pop())
-        puts node.data.to_str
-        puts "Popped a node. Empty?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+        #puts node.data.to_str
+        assert_not_nil(node,"Popped not nil")
+        assert_equal(peek,node,"Peek and node are to be equal")
+        peek=nameStack.peek()
+        #puts "Popped a node. Empty?:"+nameStack.empty?().to_s+" size: "+nameStack.size().to_s
+        #puts "Peeking at top after pop:"+nameStack.peek().data.to_str if nameStack.peek()!=nil
       end
-      
+      puts "Traverse Stack after pop of size:"+nameStack.size().to_s
+      nameStack.traverse()
     end
     
   end
