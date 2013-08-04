@@ -7,7 +7,7 @@ class Person
   end
   
   def to_str()
-    return "Id:"+self.to_s+", Name: "+@name+", Age:"+@age.to_s
+    return "From to_str Id:"+self.to_s+", Name: "+@name+", Age:"+@age.to_s
   end
   
 end
@@ -42,7 +42,4 @@ class TestPerson < Test::Unit::TestCase
   
   
 end
-
-#p=Person.new("Anjali",30)
-#p.to_str
 
