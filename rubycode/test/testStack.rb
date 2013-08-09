@@ -22,7 +22,7 @@ require '../stack.rb'
       assert_respond_to(s1,"traverse")
       assert_respond_to(s1,"size")      
       assert_respond_to(s1,"peek")      
-    end     
+    end
     def test_stack_operation()
       #will implement a person json and xml file later
       names=["apple","baby","carrot","dog","elephant","fig","grass","horse","ink"]
