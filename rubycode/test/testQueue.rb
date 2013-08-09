@@ -42,12 +42,9 @@ class TestQueue < Test::Unit::TestCase
     puts "Travesing..."
     q.traverse()
     puts "Searching................."
-    #puts nameStack.search("apple").to_s
     assert_not_equal(-1, q.search("apple"), "'apple' was found")
     assert_not_equal(-1, q.search("elephant"), "'elephant' was found")
-    #puts nameStack.search("elephant").to_s
     assert_equal(-1, q.search("job"), "'Job' was not found")
-    #puts nameStack.search("ink").to_s
     assert_not_equal(-1, q.search("ink"), "'ink' was found")
     puts "Test deletion"
     size=q.size
