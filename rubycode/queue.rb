@@ -11,6 +11,7 @@ class Queue
     @size=0
   end
   def add(node)
+    #to add node to a queue
     
   end
     def delete()
