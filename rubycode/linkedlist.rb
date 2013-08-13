@@ -117,6 +117,11 @@ class LinkedList
   end
 
   def deleteFrom(pos)
+    current=@start
+    while(pos>0
+      
+      end
+      
 
   end
 
