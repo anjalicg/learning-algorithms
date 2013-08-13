@@ -49,7 +49,7 @@ class TestQueue < Test::Unit::TestCase
     puts "Test deletion"
     size=q.size
     while (q.size!=0)
-      assert_equal(size,q.size)
+      assert_equal(size, q.size)
       q.delete().data.to_str
       size-=1
     end
