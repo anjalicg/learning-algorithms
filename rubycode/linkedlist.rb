@@ -132,8 +132,6 @@ class LinkedList
       puts "ndata #{ndata} not found in list"
       return -1
     end #ndata=nil if
-
-
   end
 
   def deleteFrom(pos)
