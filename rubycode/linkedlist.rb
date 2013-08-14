@@ -58,27 +58,27 @@ class LinkedList
       return -1
     else
       if @size==0
-        puts "Insert@:empty list"
+        #puts "Insert@:empty list"
         @start= node
         @last=node
         @size+=1
         #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       elsif @size==1 and pos==1
         #first is re-assigned
-        puts "Insert@:first in 1 element"
+        #puts "Insert@:first in 1 element"
         node.next=@start
         @start=node
         @size+=1
         #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       elsif @size==1 and pos==2
         #last is reassigned
-        puts "Insert@:pos=2 and 1 element list"
+        #puts "Insert@:pos=2 and 1 element list"
         @last.next=node
         @last=node
         @size+=1
         #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       elsif @size>1 and pos==1
-        puts "Insert@:pos=2 and 1 element"
+        #puts "Insert@:pos=2 and 1 element"
         #first is re-assigned
         node=@start.next
         @start=node
@@ -86,33 +86,53 @@ class LinkedList
         #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       elsif @size>1 and pos==@size+1
         #last is re-assigned  and
-        puts "Insert@:last element when more than 1 element"
+        #puts "Insert@:last element when more than 1 element"
         @last.next=node
         @last=node
         @size+=1
         #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       else
-        puts "Insert@:In between"
+        #puts "Insert@:In between"
         current=@start
         while(pos>2)
           current=current.next
           pos-=1
         end
-        puts "Current node is:: #{current}"
+        #puts "Current node is:: #{current}"
         temp=current.next
         current.next=node
         node.next=temp
         #node.next=temp
         #current.next=node
         @size+=1
-        puts "First : #{@start.inspect} and last: #{@last.inspect}"
+        #puts "First : #{@start.inspect} and last: #{@last.inspect}"
       end
       return 0
     end
   end
 
-  def insertAfter(node, node1)
-    #Insert node after node1
+  def insertAfter(node, ndata)
+    #Insert node after ndata
+    if ndata==nil
+      return -1
+    else
+      current=@start
+      while (current!=nil and current.next!=nil and !current.data.to_str.match(ndata))
+        current=current.next
+      end
+      if current!=nil then
+      puts "Found match #{current} for ndata #{ndata}"
+      node.next=current.next
+      current.next=node
+      @size+=1
+        return 0
+      else
+        puts "ndata #{ndata} not found in list"
+        return -1
+      end
+
+    end
+
 
   end
 
