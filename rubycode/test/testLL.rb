@@ -49,6 +49,15 @@ class TestLL < Test::Unit::TestCase
     end
     puts "traversing List1.....#{list1.size}"
     list1.traverse()
+    nl=["ze","yak","um","not"]
+    after=["apple1","dog1","fig1","dumbo"]
+    i=0
+    for i in 0..4 do
+      n=Node.new(Person.new(nl[i],20),nil)
+      list1.insertAfter(n,after[i])
+    end
+    puts "traversing List1.....#{list1.size}"
+    list1.traverse()
   end
 
 end        #class end

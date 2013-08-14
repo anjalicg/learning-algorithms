@@ -6,7 +6,7 @@ class LinkedList
     @start=start
     @size=0
     @last=start
-#    @current=start
+    #    @current=start
   end
 
   def empty?
@@ -94,7 +94,7 @@ class LinkedList
       else
         #puts "Insert@:In between"
         current=@start
-        while(pos>2)
+        while (pos>2)
           current=current.next
           pos-=1
         end
@@ -117,21 +117,21 @@ class LinkedList
       return -1
     else
       current=@start
-      while (current!=nil and current.next!=nil and !current.data.to_str.match(ndata))
-        current=current.next
-      end
-      if current!=nil then
-      puts "Found match #{current} for ndata #{ndata}"
-      node.next=current.next
-      current.next=node
-      @size+=1
-        return 0
-      else
-        puts "ndata #{ndata} not found in list"
-        return -1
-      end
-
-    end
+      while (current!=nil)
+        if current.data.to_str.match(ndata)
+          puts "Current from insertAfter; #{current.data.name}"
+          puts "Found match #{current.data.name} for ndata #{ndata}"
+          node.next=current.next
+          current.next=node
+          @size+=1
+          return 0
+        else
+          current=current.next #if current.next!=nil
+        end #match if
+      end # while
+      puts "ndata #{ndata} not found in list"
+      return -1
+    end #ndata=nil if
 
 
   end
@@ -169,7 +169,7 @@ class LinkedList
     puts "Current traverse #{current.inspect}"
     while current!=nil
       puts current
-      puts "Traversing lists.........",current.data.to_str
+      puts "Traversing lists.........", current.data.to_str
       if current.next!=nil
         current=current.next
       else
