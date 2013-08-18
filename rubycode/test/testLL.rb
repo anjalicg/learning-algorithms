@@ -17,7 +17,7 @@ class TestLL < Test::Unit::TestCase
       puts "List Size now:"+list.size().to_s
     }
     puts "traversing.."
-    list.traverse()
+    #list.traverse()
     puts "deleting...."
     while(list.size>0)
       nodem = list.delete()
@@ -36,8 +36,8 @@ class TestLL < Test::Unit::TestCase
       #puts "Inserted node #{n} at pos #{pos1} and new size is #{list1.size}"
       pos1+=1
     end
-    puts "traversing List1.....#{list1.size}"
-    list1.traverse()
+    #puts "traversing List1.....#{list1.size}"
+    #list1.traverse()
     puts "#################################################################"
     for name in names[5..names.length-1] do
       puts "#####pos.... #{pos1} and name #{name}"
@@ -48,7 +48,7 @@ class TestLL < Test::Unit::TestCase
       pos1-=1
     end
     puts "traversing List1.....#{list1.size}"
-    list1.traverse()
+    #list1.traverse()
     nl=["ze","yak","um","not"]
     after=["apple1","dog1","fig1","dumbo"]
     i=0
@@ -58,6 +58,30 @@ class TestLL < Test::Unit::TestCase
     end
     puts "traversing List1.....#{list1.size}"
     list1.traverse()
+    puts "delete node wjith some data"
+    list1.deleteNode("fig1")
+    list1.deleteNode("dumbo")
+    list1.deleteNode("dog1")
+    list1.deleteNode("um")
+    list1.deleteNode("apple1")
+    list1.traverse()
+    puts "**************"
+    puts list1.getfirst().data.to_str
+    puts list1.getlast().data.to_str
+    puts "Delete at 0: #{list1.deleteFrom(0)}"
+    puts "Delete at 1: #{list1.deleteFrom(1)}"
+    puts "Delete at size #{list1.size}: #{list1.deleteFrom(list1.size)}"
+    puts "Delete at 2: #{list1.deleteFrom(2)}"
+    puts "Delete at #{list1.size()-1}: "
+    puts "#{list1.deleteFrom(list1.size()-1)}"
+    puts "Delete at 3: #{list1.deleteFrom(3)}"
+    puts "Delete at size #{list1.size}: #{list1.deleteFrom(list1.size)}"
+    puts "Delete at size #{list1.size}: #{list1.deleteFrom(list1.size)}"
+    puts "Delete at 1: #{list1.deleteFrom(1)}"
+    list1.traverse()
+    #puts list1.getfirst().data.to_str
+    #puts list1.getlast().data.to_str
+
   end
 
 end        #class end

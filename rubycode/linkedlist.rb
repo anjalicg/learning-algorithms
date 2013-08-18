@@ -135,11 +135,73 @@ class LinkedList
   end
 
   def deleteFrom(pos)
+    if pos>@size or pos<=0
+      puts "Invalid pos #{pos}"
+      return -1
+    elsif pos==1 and @size==1
+      #puts "only element in len 1 list"
+      @start=nil
+      @last=nil
+      @size-=1
+    elsif pos==1 and @size>1
+      #puts "first element of longer list #{@start.data.to_str}"
+      @start=@start.next
+      @size-=1
+    #elsif pos==@size and @size>1
+     # puts "last element of list"
+
+    else
+      #puts "Middle element of longer list: #{pos}"
+      current=@start
+      i=pos
+      while pos>2 and current!=nil
+        current=current.next
+        pos-=1
+      end #while
+      if i==@size
+       # puts "Going to make this as last: #{current.data.to_str}"
+        current.next=nil
+        @last=current
+      else
+        #puts "Going to delete node next to #{current.data.to_str}"
+        temp=current
+        current.next=temp.next.next
+      end
+      @size-=1
+
+      end #pos check
+    return 0
 
   end
 
-  def deleteNode(node1)
+  def deleteNode(ndata)
+    deleted=false
+    if @start.data.to_str.match(ndata) then
+      puts "start matches data"
+      temp=@start
+      @start =@start.next
+      temp.next=nil
+      deleted=true
+      @size-=1
+    else
+      current=@start
+      while current!=nil and current.next!=nil
+        if current.next.data.to_str.match(ndata)
+          #puts "Match found at node #{current.next.data.to_str}:Going to delete it...."
+          deleted=true
+          if current.next==@last
+            @last=current
+            current.next=current.next.next
+          else
+            current.next=current.next.next
+          end
 
+          @size-=1
+        end
+        current=current.next
+      end
+    end
+    puts "Node not found " if !deleted
   end
 
   def search(element)
@@ -164,7 +226,7 @@ class LinkedList
 
   def traverse
     current=@start
-    puts "Current traverse #{current.inspect}"
+    #puts "Current traverse #{current.inspect}"
     while current!=nil
       puts current
       puts "Traversing lists.........", current.data.to_str
