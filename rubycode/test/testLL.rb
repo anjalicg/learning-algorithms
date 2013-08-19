@@ -4,6 +4,21 @@ require '../node'
 require '../person'
 
 class TestLL < Test::Unit::TestCase
+  def test_linked_list_methods
+    list=LinkedList.new(nil)
+    assert_respond_to(list, "insert")
+    assert_respond_to(list, "empty?")
+    assert_respond_to(list, "clear")
+    assert_respond_to(list, "insertAt")
+    assert_respond_to(list, "insertAfter")
+    assert_respond_to(list, "deleteFrom")
+    assert_respond_to(list, "deleteNode")
+    assert_respond_to(list, "search")
+    assert_respond_to(list, "traverse")
+    assert_respond_to(list, "delete")
+    assert_respond_to(list, "getfirst")
+    assert_respond_to(list, "getlast")
+  end
   def test_operations
     names=["apple", "baby", "carrot", "dog", "elephant", "fig", "grass", "horse", "ink"]
     age=20
@@ -15,13 +30,17 @@ class TestLL < Test::Unit::TestCase
       list.insert(n)
       i+=1
       puts "List Size now:"+list.size().to_s
+      assert_equal(i,list.size())
     }
     puts "traversing.."
     #list.traverse()
     puts "deleting...."
+    size=list.size()-1
     while(list.size>0)
       nodem = list.delete()
       puts "From while loop",nodem.data.to_str if nodem!=nil
+      assert_equal(size,list.size())
+      size-=1
     end
     puts "...InsertingAt....."
     list1=LinkedList.new(nil)
@@ -43,7 +62,7 @@ class TestLL < Test::Unit::TestCase
       puts "#####pos.... #{pos1} and name #{name}"
       n=Node.new(Person.new(name, age), nil)
       puts "Before insert size: #{list1.size} to pos #{pos1}"
-      list1.insertAt(n,pos1)
+      assert_equal(0,list1.insertAt(n,pos1))
       puts "Inserted node #{n} at pos #{pos1} and new size is #{list1.size}"
       pos1-=1
     end
@@ -54,7 +73,7 @@ class TestLL < Test::Unit::TestCase
     i=0
     for i in 0..4 do
       n=Node.new(Person.new(nl[i],20),nil)
-      list1.insertAfter(n,after[i])
+      assert_equal(0,list1.insertAfter(n,after[i]))
     end
     puts "traversing List1.....#{list1.size}"
     list1.traverse()

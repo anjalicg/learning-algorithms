@@ -23,19 +23,19 @@ class LinkedList
   def insert(node)
     #Inserts at last i.e append to the list
     if @last==nil
-      puts "empty list"
+      #puts "empty list"
       @start=node
       @last =node
     else
-      puts "1 or more than 1 element"
+      #puts "1 or more than 1 element"
       @last.next=node
       @last=node
       @last.next=nil
     end
     @size+=1
-    puts "Start, last and size after inserting node from insert:"
-    print @start, @last, @size, node
-    puts "..."
+    #puts "Start, last and size after inserting node from insert:"
+    #print @start, @last, @size, node
+    #puts "..."
   end
 
   def clear()
@@ -147,8 +147,8 @@ class LinkedList
       #puts "first element of longer list #{@start.data.to_str}"
       @start=@start.next
       @size-=1
-    #elsif pos==@size and @size>1
-     # puts "last element of list"
+      #elsif pos==@size and @size>1
+      # puts "last element of list"
 
     else
       #puts "Middle element of longer list: #{pos}"
@@ -159,7 +159,7 @@ class LinkedList
         pos-=1
       end #while
       if i==@size
-       # puts "Going to make this as last: #{current.data.to_str}"
+        # puts "Going to make this as last: #{current.data.to_str}"
         current.next=nil
         @last=current
       else
@@ -169,7 +169,7 @@ class LinkedList
       end
       @size-=1
 
-      end #pos check
+    end #pos check
     return 0
 
   end
