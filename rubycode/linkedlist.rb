@@ -2,6 +2,7 @@ class LinkedList
   attr_accessor :start, :size, :last
 
   def initialize(start)
+    puts "inside init"
     #initialize the LinkedList object
     @start=start
     @size=0
@@ -118,9 +119,26 @@ class LinkedList
 
   def deleteFrom(pos)
     current=@start
-    while(pos>0
+    posn=pos
+    if pos==1 and @start==nil
+      puts "empty element"
+      return nil
+    elsif pos==1 and @start!=nil
+      puts "start element"
+      @start=@start.next
+      @size-=1
+    elsif pos==@size and 
       
-      end
+      
+    else
+    while(pos>1)
+      current =current.next
+      pos-=1      
+    end #end while
+    current=current.next 
+    end
+    
+    
       
 
   end
