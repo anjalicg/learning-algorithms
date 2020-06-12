@@ -1,0 +1,4 @@
+
+When we import some package with "as" keyword, the instantiation is done only for that name.
+If we dont use "as" all the variables in the public namesspace of that package are instantiated.
+
